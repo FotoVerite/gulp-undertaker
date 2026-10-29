@@ -125,7 +125,7 @@ describe("parallel", function () {
       parallel1,
       "test3",
     )(function (err, results) {
-      console.log
+      console.log;
       assert.deepStrictEqual(results, [1, [1, 2, 3], 3]);
       done(err);
     });

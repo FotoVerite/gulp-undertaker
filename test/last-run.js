@@ -77,16 +77,16 @@ describe("lastRun", function () {
     });
   });
 
-  it("should record same tasks time execution for a string task and its original", function (t,done) {
+  it("should record same tasks time execution for a string task and its original", function (t, done) {
     taker.series(test2)(function (err) {
-      assert.strictEqual(taker.lastRun(test2),taker.lastRun("test2"));
+      assert.strictEqual(taker.lastRun(test2), taker.lastRun("test2"));
       done(err);
     });
   });
 
   it("should record tasks time execution for an aliased task", function (t, done) {
     taker.series("alias")(function (err) {
-      assert.strictEqual(taker.lastRun("alias"),taker.lastRun("test1"));
+      assert.strictEqual(taker.lastRun("alias"), taker.lastRun("test1"));
       done(err);
     });
   });
@@ -97,7 +97,7 @@ describe("lastRun", function () {
     var expected = since - (since % resolution);
 
     taker.series("test1")(function () {
-      assert.strictEqual(taker.lastRun("test1", resolution),expected);
+      assert.strictEqual(taker.lastRun("test1", resolution), expected);
       done();
     });
   });

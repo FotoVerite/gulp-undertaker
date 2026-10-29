@@ -139,13 +139,13 @@ describe("series", function () {
       "error",
       "test3",
     )(function (err, results) {
-      assert.strictEqual(err instanceof Error, true);
+      assert.ok(err instanceof Error);
       assert.deepStrictEqual(results, [1, undefined, undefined]);
       done();
     });
   });
 
-  it("should throw on unregistered task", function (t, done) {
+  it("should throw on unregistered task", function () {
     function unregistered() {
       taker.series("unregistered");
     }
@@ -153,7 +153,6 @@ describe("series", function () {
     assert.throws(unregistered, {
       message: "Task never defined: unregistered",
     });
-    done();
   });
 
   it("should process all functions if settle flag is true", function (t, done) {
@@ -165,7 +164,7 @@ describe("series", function () {
       taker.series("test1", "error"),
       "test3",
     )(function (err, results) {
-      assert.strictEqual(err[0][0] instanceof Error, true);
+      assert.ok(err[0][0] instanceof Error);
       assert.deepStrictEqual(results, [3]);
       done();
     });

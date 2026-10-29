@@ -125,7 +125,6 @@ describe("parallel", function () {
       parallel1,
       "test3",
     )(function (err, results) {
-      console.log;
       assert.deepStrictEqual(results, [1, [1, 2, 3], 3]);
       done(err);
     });
@@ -140,13 +139,13 @@ describe("parallel", function () {
       "error",
       "test3",
     )(function (err, results) {
-      assert.strictEqual(err instanceof Error, true);
+      assert.ok(err instanceof Error);
       assert.deepStrictEqual(results, [1, undefined, undefined]);
       done();
     });
   });
 
-  it("should throw on unregistered task", function (t, done) {
+  it("should throw on unregistered task", function () {
     function unregistered() {
       taker.parallel("unregistered");
     }
@@ -154,7 +153,6 @@ describe("parallel", function () {
     assert.throws(unregistered, {
       message: "Task never defined: unregistered",
     });
-    done();
   });
 
   it("should process all functions if settle flag is true", function (t, done) {
@@ -166,7 +164,7 @@ describe("parallel", function () {
       taker.parallel("test1", "error"),
       "test3",
     )(function (err, results) {
-      assert.strictEqual(err[0][0] instanceof Error, true);
+      assert.ok(err[0][0] instanceof Error);
       assert.deepStrictEqual(results, [3]);
       done();
     });

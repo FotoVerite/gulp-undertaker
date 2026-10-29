@@ -126,20 +126,20 @@ describe("registry", function () {
   describe("constructor", function () {
     it("should take a custom registry on instantiation", function () {
       var taker = new Undertaker(new CustomRegistry());
-      assert.strictEqual(taker.registry() instanceof CustomRegistry, true);
+      assert.ok(taker.registry() instanceof CustomRegistry);
       assert.strictEqual(taker.registry() instanceof DefaultRegistry, false);
     });
 
     it("should default to undertaker-registry if not constructed with custom registry", function () {
       var taker = new Undertaker();
-      assert.strictEqual(taker.registry() instanceof DefaultRegistry, true);
+      assert.ok(taker.registry() instanceof DefaultRegistry);
       assert.strictEqual(taker.registry() instanceof CustomRegistry, false);
     });
 
     it("should take a registry that pre-defines tasks", function () {
       var taker = new Undertaker(new CommonRegistry());
-      assert.strictEqual(taker.registry() instanceof CommonRegistry, true);
-      assert.strictEqual(taker.registry() instanceof DefaultRegistry, true);
+      assert.ok(taker.registry() instanceof CommonRegistry);
+      assert.ok(taker.registry() instanceof DefaultRegistry);
       assert.strictEqual(typeof taker.task("clean"), "function");
       assert.strictEqual(typeof taker.task("serve"), "function");
     });

@@ -1,13 +1,13 @@
 "use strict";
 
-var assert = require("node:assert");
-var { afterEach, beforeEach, describe, it } = require("node:test");
 var os = require("node:os");
 var fs = require("node:fs");
 var path = require("node:path");
+var spawn = require("node:child_process").spawn;
+var assert = require("node:assert");
+var { afterEach, beforeEach, describe, it } = require("node:test");
 
 var vinyl = require("vinyl-fs");
-var spawn = require("child_process").spawn;
 var once = require("once");
 var aOnce = require("async-once");
 var del = require("del");

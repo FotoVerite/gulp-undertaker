@@ -59,7 +59,7 @@ describe("lastRun", function () {
         taker.lastRun(function () {}),
         undefined,
       );
-      assert.throws(taker.lastRun.bind(taker, "notexists"));
+      assert.throws(taker.lastRun.bind(taker, "notexists"), Error);
       done(err);
     });
   });
@@ -107,7 +107,7 @@ describe("lastRun", function () {
       // To keep the test from catching the emitted errors
     });
     taker.series("error")(function (err) {
-      assert.strictEqual(err instanceof Error, true);
+      assert.ok(err instanceof Error);
       assert.strictEqual(taker.lastRun("error"), undefined);
       done();
     });
